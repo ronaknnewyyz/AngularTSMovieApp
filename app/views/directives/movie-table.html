@@ -1,0 +1,27 @@
+<div>
+  <input type="text" ng-model="searchTitleName" class="form-control"
+         placeholder="Search for your saved movies here...">
+
+  <table class="table table-hover">
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Director</th>
+      <th>Favourite</th>
+      <th>Watched</th>
+      <th>OMDB Rating</th>
+      <th>Remove</th>
+    </tr>
+    <tr ng-repeat="movie in movies| orderBy: 'Title' | filter: searchTitleName" ng-show="{{name}}">
+      <td>{{movie.Title}}</td>
+      <td>{{movie.Year}}</td>
+      <td>{{movie.Director}}</td>
+      <td><input type="checkbox" ng-model="movie.Favourite"></td>
+      <td><input type="checkbox" ng-model="movie.Watched"></td>
+      <td>{{movie.imdbRating}}</td>
+      <td><a ng-click="remove({title: movie.Title})" href="">
+        <span class="glyphicon glyphicon-remove-circle"></span></a></td>
+    </tr>
+
+  </table>
+</div>
