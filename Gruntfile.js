@@ -12,6 +12,9 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  //tslint
+  require('grunt-tslint')(grunt);
+
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
@@ -116,6 +119,19 @@ module.exports = function (grunt) {
       }
     },
 
+    tslint: {
+      options: {
+        // Task-specific options go here.
+        configuration: 'tslint.json'
+      },
+      files: {
+        // Target-specific file lists and/or options go here.
+        src: [
+          'app/**/*.ts'
+        ]
+      },
+    },
+
     // Make sure there are no obvious mistakes
     jshint: {
       options: {
@@ -211,7 +227,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
     // Compiles TypeScript to JavaScript
     typescript: {
       base: {
@@ -245,7 +261,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    
+
 
     // Renames files for browser caching purposes
     filerev: {
@@ -489,6 +505,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'tslint',
     'tsd:refresh',
     'useminPrepare',
     'concurrent:dist',
@@ -508,6 +525,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'newer:jshint',
     'newer:jscs',
+    'tslint',
     'test',
     'build'
   ]);
