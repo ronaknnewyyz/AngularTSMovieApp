@@ -1,3 +1,6 @@
+# AngularTSMovieApp
+This is a sample Movie app built with AngularJS. This is written in TypeScript. 
+
 # angular-ts-sample-app2
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
