@@ -1,28 +1,10 @@
 /// <reference path="../app.ts" />
 
-'use strict';
-
-
 module angularTsSampleApp2App {
-  export class MovieList {
-    getMoviesList = function (): IMovie[] {
-      return this.movies;
-    };
-    addMovie = function (movie: IMovie): void {
-      this.movies.push(movie);
-    };
-    removeMovie = function (title: string): void {
-      if (title !== '') {
-        for (var i = 0; i < this.movies.length; i++) {
-          var obj = this.movies[i];
-          if (title.indexOf(obj.Title) !== -1) {
-            this.movies.splice(i, 1);
-            break;
-          }
-        }
-      }
-    };
 
+  'use strict';
+
+  export class MovieList {
     movies: IMovie[] = [
       {
         'Title' : 'Now you see me',
@@ -53,6 +35,27 @@ module angularTsSampleApp2App {
         'Watched' : false
       }
     ];
+
+    getMoviesList (): IMovie[] {
+      return this.movies;
+    };
+
+    addMovie (movie: IMovie): void {
+      this.movies.push(movie);
+    };
+
+    removeMovie (title: string): void {
+      if (title !== '') {
+        for (var i: number = 0; i < this.movies.length; i++) {
+          var obj: IMovie = this.movies[i];
+          if (title.indexOf(obj.Title) !== -1) {
+            this.movies.splice(i, 1);
+            break;
+          }
+        }
+      }
+    };
+
   }
 }
 

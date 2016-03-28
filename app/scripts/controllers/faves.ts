@@ -1,8 +1,9 @@
 /// <reference path="../app.ts" />
 
-'use strict';
-
 module angularTsSampleApp2App {
+
+  'use strict';
+
   export interface IFavesScope extends ng.IScope {
     movies: any[];
   }
@@ -13,11 +14,11 @@ module angularTsSampleApp2App {
       $scope.movies = this.getMoviesList();
     }
 
-    getMoviesList = function (): IMovie[] {
+    getMoviesList(): IMovie[] {
       return this.movieList.movies;
     };
 
-    removeTitle = function(title): void {
+    removeTitle(title: string): void {
       this.movieList.removeMovie(title);
     };
   }

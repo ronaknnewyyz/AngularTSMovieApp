@@ -1,8 +1,8 @@
 /// <reference path="../app.ts" />
 
-'use strict';
-
 module angularTsSampleApp2App {
+
+  'use strict';
 
   export interface IToWatchScope extends ng.IScope {
     movies: IMovie[];
@@ -13,8 +13,7 @@ module angularTsSampleApp2App {
     scope: any;
   }
 
-  export interface IMovie
-  {
+  export interface IMovie {
     Title: string;
     Year: string;
     Director: string;
@@ -25,7 +24,7 @@ module angularTsSampleApp2App {
   export class ToWatchCtrl {
     movies: any;
     searchSuccess: boolean;
-    searchResult: any
+    searchResult: any;
     scope: IToWatchScope;
 
     constructor (public $scope: IToWatchScope, public movieList: MovieList, public omdb: Omdb) {
@@ -35,47 +34,47 @@ module angularTsSampleApp2App {
       this.scope = $scope;
     }
 
-    addMovie = function(): void {
+    addMovie(): void {
       if (this.$scope.formValues && this.$scope.formValues.Title) {
         this.movieList.addMovie(this.$scope.formValues);
       }
     };
 
-    removeTitle = function(title: string): void {
+    removeTitle(title: string): void {
       this.movieList.removeMovie(title);
     };
 
-    getMoviesList = function (): IMovie[] {
+    getMoviesList(): IMovie[] {
       return this.movieList.getMoviesList();
     };
 
-    searchTitle = function(title: string): any {
-      var that = this;
+    searchTitle(title: string): any {
+      var that: any = this;
       if (title) {
-        console.log("Calling Search Function");
+        console.log('Calling Search Function');
         this.omdb.searchTitle(title)
-        .then(function success(response) {
-          console.log("Search Response " + JSON.stringify(response.data));
+        .then(function success(response: any): any {
+          console.log('Search Response ' + JSON.stringify(response.data));
           if (response.data.Error) {
-            console.log("Search Result failed: " + response.data.Error);
-            alert(response.data.Error + " Please try again");
+            console.log('Search Result failed: ' + response.data.Error);
+            alert(response.data.Error + ' Please try again');
           } else {
             that.searchResult = response.data;
             that.searchSuccess = true;
             return response.data;
           }
-        }, function error(response) {
-          console.log("Search Result failed: " + response.data.Error);
-          alert("No Movies Found! Please try again");
+        }, function error(response: any): void {
+          console.log('Search Result failed: ' + response.data.Error);
+          alert('No Movies Found! Please try again');
         });
       }
     };
 
-    addSearchedTitle = function(movie: IMovie): void {
+    addSearchedTitle(movie: IMovie): void {
       this.movieList.addMovie(movie);
       this.searchResult = {};
       this.searchSuccess = false;
-    }
+    };
 
   }
 }

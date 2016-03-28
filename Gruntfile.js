@@ -478,6 +478,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'tslint',
       'wiredep',
       'tsd:refresh',
       'concurrent:server',

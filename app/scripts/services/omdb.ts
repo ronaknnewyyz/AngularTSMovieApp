@@ -1,23 +1,23 @@
 /// <reference path="../app.ts" />
 
-'use strict';
-
 module angularTsSampleApp2App {
-  import IHttpService = angular.IHttpService;
+
+  'use strict';
+
   export class Omdb {
-    httpService : ng.IHttpService;
+    httpService: ng.IHttpService;
 
     constructor(private $http: ng.IHttpService) {
       this.httpService = $http;
     }
 
-    searchTitle = function (title): ng.IPromise<any> {
-      console.log("Calling OMDB Function");
+    searchTitle (title: string): ng.IPromise<any> {
+      console.log('Calling OMDB Function');
       return this.httpService({
         method: 'GET',
         url: 'http://www.omdbapi.com/?t=' + title
       });
-    }
+    };
   }
 }
 

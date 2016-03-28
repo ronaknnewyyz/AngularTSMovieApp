@@ -11,26 +11,26 @@ angular.module('angularTsSampleApp2App', [
     'ngSanitize',
     'ngTouch'
   ])
-  .config(($routeProvider:ng.route.IRouteProvider) => {
+  .config(($routeProvider: ng.route.IRouteProvider) => {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        templateUrl: 'views/main.html'
       })
       .when('/to-watch', {
-        templateUrl: 'views/to-watch.html',
         controller: 'ToWatchCtrl',
-        controllerAs: 'watch'
+        controllerAs: 'watch',
+        templateUrl: 'views/to-watch.html'
       })
       .when('/watched', {
-        templateUrl: 'views/watched.html',
         controller: 'WatchedCtrl',
-        controllerAs: 'watched'
+        controllerAs: 'watched',
+        templateUrl: 'views/watched.html'
       })
       .when('/faves', {
-        templateUrl: 'views/faves.html',
         controller: 'FavesCtrl',
-        controllerAs: 'faves'
+        controllerAs: 'faves',
+        templateUrl: 'views/faves.html'
       })
       .otherwise({
         redirectTo: '/'
