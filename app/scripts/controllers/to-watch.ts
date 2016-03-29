@@ -23,7 +23,7 @@ module angularTsSampleApp2App {
   }
 
   export class ToWatchCtrl {
-    movies: any;
+    movies: IMovie;
     searchSuccess: boolean;
     searchFormError: boolean;
     searchResult: any;
@@ -41,6 +41,7 @@ module angularTsSampleApp2App {
       if (addMovieForm.$valid) {
         if (this.$scope.formValues && this.$scope.formValues.Title) {
           this.movieList.addMovie(this.$scope.formValues);
+          this.resetForm();
         }
       } else {
         if (addMovieForm.Title.$error.required) {
@@ -90,6 +91,16 @@ module angularTsSampleApp2App {
       this.searchResult = {};
       this.searchSuccess = false;
     };
+
+    resetForm(): void {
+      this.$scope.formValues = {
+        Title: undefined,
+        Year: undefined,
+        Director: undefined,
+        Watched: false,
+        Favourite: false
+      };
+    }
 
   }
 }
