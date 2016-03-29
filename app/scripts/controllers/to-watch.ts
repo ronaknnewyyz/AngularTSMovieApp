@@ -10,6 +10,7 @@ module angularTsSampleApp2App {
     add: any;
     searchResult: any;
     searchSuccess: boolean;
+    searchFormError: boolean;
     scope: any;
   }
 
@@ -24,6 +25,7 @@ module angularTsSampleApp2App {
   export class ToWatchCtrl {
     movies: any;
     searchSuccess: boolean;
+    searchFormError: boolean;
     searchResult: any;
     scope: IToWatchScope;
 
@@ -31,12 +33,21 @@ module angularTsSampleApp2App {
       $scope.movies = this.getMoviesList();
       $scope.add = this.addMovie;
       this.searchSuccess = false;
+      this.searchFormError = false;
       this.scope = $scope;
     }
 
-    addMovie(): void {
-      if (this.$scope.formValues && this.$scope.formValues.Title) {
-        this.movieList.addMovie(this.$scope.formValues);
+    addMovie(addMovieForm: any): void {
+      if (addMovieForm.$valid) {
+        if (this.$scope.formValues && this.$scope.formValues.Title) {
+          this.movieList.addMovie(this.$scope.formValues);
+        }
+      } else {
+        if (addMovieForm.Title.$error.required) {
+          alert('Movie Title is required!');
+        } else {
+          alert('Invalid Form!');
+        }
       }
     };
 
@@ -48,10 +59,12 @@ module angularTsSampleApp2App {
       return this.movieList.getMoviesList();
     };
 
-    searchTitle(title: string): any {
+    searchTitle(title: string, searchMovieForm: any): any {
       var that: any = this;
+      console.log('Search Movie Form valid? : ' + searchMovieForm.$valid);
       if (title) {
         console.log('Calling Search Function');
+        that.searchFormError = false;
         this.omdb.searchTitle(title)
         .then(function success(response: any): any {
           console.log('Search Response ' + JSON.stringify(response.data));
@@ -67,6 +80,8 @@ module angularTsSampleApp2App {
           console.log('Search Result failed: ' + response.data.Error);
           alert('No Movies Found! Please try again');
         });
+      } else {
+        that.searchFormError = true;
       }
     };
 

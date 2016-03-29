@@ -1,15 +1,16 @@
 <div class="col-sm-1"></div><h3 class="col-sm-11">Add Movie Form</h3>
-<form name="addMovieForm" class="form-horizontal">
+<form name="addMovieForm" class="form-horizontal" novalidate>
   <div class="form-group">
-    <label for="Title" class="col-sm-2 control-label">Title</label>
+    <label for="Title" class="col-sm-2 control-label" ng-class="{'invalidField' : addMovieForm.Title.$error.required}">Title</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="Title" ng-model="formValues.Title" required>
+      <input type="text" class="form-control" id="Title" name="Title" ng-model="formValues.Title" required>
     </div>
   </div>
   <div class="form-group">
     <label for="Year" class="col-sm-2 control-label">Year</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="Year" ng-model="formValues.Year">
+      <input type="number" class="form-control" name="Year" id="Year" ng-model="formValues.Year">
+      <span ng-show="addMovieForm.Year.$error.number">Please enter numbers only.</span>
     </div>
   </div>
   <div class="form-group">
@@ -25,22 +26,24 @@
     </div>
   </div>
   <div class="col-sm-2"></div>
-  <button type="submit" class="btn btn-primary" ng-click="watch.addMovie()">Add</button>
+  <button type="submit" class="btn btn-primary" ng-click="watch.addMovie(addMovieForm)">Add</button>
 </form>
 
 
 <hr>
 
   <div class="col-sm-1"></div><h3 class="col-sm-11">Search Your Movie</h3>
-  <form name="searchMovieForm" class="form-horizontal">
+  <form name="searchMovieForm" class="form-horizontal" novalidate>
     <div class="form-group">
-      <label for="searchTitle" class="col-sm-2 control-label">Title</label>
+      <label for="searchTitle" class="col-sm-2 control-label" ng-class="{'invalidField' : searchMovieForm.searchTitle.$error.required}">Title</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="searchTitle" ng-model="searchTitle" required>
+        <input type="text" class="form-control" name="searchTitle" id="searchTitle" ng-model="searchTitle" required>
+        <p class="alert alert-warning"
+         ng-show="watch.searchFormError">Please enter Movie Title to be searched.</p>
       </div>
     </div>
     <div class="col-sm-2"></div>
-    <button type="submit" class="btn btn-primary" ng-click="watch.searchTitle(searchTitle)">Search</button>
+    <button type="submit" class="btn btn-primary" ng-click="watch.searchTitle(searchTitle, searchMovieForm)">Search</button>
   </form>
 
 <div ng-show="watch.searchSuccess">
