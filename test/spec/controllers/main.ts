@@ -20,7 +20,7 @@ describe('Controller: MainCtrl', () => {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', () => {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should test controller is defined', () => {
+    expect(MainCtrl).toBeDefined();
   });
 });

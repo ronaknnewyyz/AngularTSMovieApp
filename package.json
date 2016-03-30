@@ -43,7 +43,9 @@
     "test": "karma start test/karma.conf.js"
   },
   "dependencies": {
+    "grunt-karma": "^0.12.2",
     "grunt-tslint": "^3.0.3",
+    "karma": "^0.13.22",
     "tslint": "^3.6.0",
     "typescript": "^1.7.3"
   }

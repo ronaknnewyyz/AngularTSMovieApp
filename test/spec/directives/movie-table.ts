@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/angularjs/angular-mocks.d.ts" />
 /// <reference path="../../../typings/jasmine/jasmine.d.ts" />
-/// <reference path="../../../app/scripts/directives/movietable.ts" />
+/// <reference path="../../../app/scripts/directives/movie-table.ts" />
 
 'use strict';
 
@@ -16,9 +16,9 @@ describe('Directive: movieTable', () => {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(($compile: ng.ICompileService) => {
+  it('Replaces the element with the appropriate content', inject(($compile: ng.ICompileService) => {
     element = angular.element('<movie-table></movie-table>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the movieTable directive');
+    expect(element.html()).toBe('');
   }));
 });

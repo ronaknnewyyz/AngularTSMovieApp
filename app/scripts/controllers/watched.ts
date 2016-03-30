@@ -15,7 +15,7 @@ module angularTsSampleApp2App {
     }
 
     getMoviesList(): IMovie[] {
-      return this.movieList.movies;
+      return this.movieList.getMoviesList();
     };
 
     removeTitle(title: string): void {

@@ -60,29 +60,29 @@ module angularTsSampleApp2App {
       return this.movieList.getMoviesList();
     };
 
-    searchTitle(title: string, searchMovieForm: any): any {
-      var that: any = this;
+    searchTitle(title: string, searchMovieForm: any): void {
       console.log('Search Movie Form valid? : ' + searchMovieForm.$valid);
       if (title) {
         console.log('Calling Search Function');
-        that.searchFormError = false;
+        this.searchFormError = false;
         this.omdb.searchTitle(title)
-        .then(function success(response: any): any {
+        .then((response: any): any => {
           console.log('Search Response ' + JSON.stringify(response.data));
           if (response.data.Error) {
             console.log('Search Result failed: ' + response.data.Error);
             alert(response.data.Error + ' Please try again');
+            this.searchSuccess = false;
           } else {
-            that.searchResult = response.data;
-            that.searchSuccess = true;
-            return response.data;
+            this.searchResult = response.data;
+            this.searchSuccess = true;
           }
-        }, function error(response: any): void {
+        }, (response: any): void => {
           console.log('Search Result failed: ' + response.data.Error);
           alert('No Movies Found! Please try again');
+          this.searchSuccess = false;
         });
       } else {
-        that.searchFormError = true;
+        this.searchFormError = true;
       }
     };
 
@@ -94,13 +94,13 @@ module angularTsSampleApp2App {
 
     resetForm(): void {
       this.$scope.formValues = {
-        Title: undefined,
-        Year: undefined,
         Director: undefined,
+        Favourite: false,
+        Title: undefined,
         Watched: false,
-        Favourite: false
+        Year: undefined
       };
-    }
+    };
 
   }
 }

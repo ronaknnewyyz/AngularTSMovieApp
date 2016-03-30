@@ -5,7 +5,7 @@ module angularTsSampleApp2App {
   'use strict';
 
   export class MovieList {
-    movies: IMovie[] = [
+    private movies: IMovie[] = [
       {
         'Title' : 'Now you see me',
         'Year' : '2014',
